@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { auth, actulizarObtenerTareas, eliminarTarea, actualizarTarea, obtenerTarea } from "./app/firebase.js";
+import { auth,actulizarObtenerTareas, eliminarTarea, actualizarTarea, obtenerTarea } from "./app/firebase.js";
 
 import './app/crearCuenta.js'
 import './app/iniciarSesion.js'
@@ -74,7 +74,7 @@ auth.onAuthStateChanged(async function(user){
         console.log("sin sesion")
 
         const contenedorTareas = $("#contenedor-tareas");
-        contenedorTareas.html('<h3 class ="text-white">Inicia sesion para ver tus piblicaciones :)</h3>');
+        contenedorTareas.html('<h3 class ="text-white">Inicia sesion para ver tus publicaciones :)</h3>');
 
         verificarSesion(user);
     }
