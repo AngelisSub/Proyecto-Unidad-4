@@ -37,6 +37,7 @@ const firebaseConfig = {
   }
 
   export function eliminarTarea(id){
+    console.log("llego a eliminar tareas");
     return deleteDoc(doc(db, "tareas", id));
   }
 

@@ -32,10 +32,10 @@ auth.onAuthStateChanged(async function(user){
                      <h5>${task.titulo}</h5>
                      <p>${task.descripcion}</p>
                      <div>
-                       <button class = "btn btn-primary btn-eliminar" data-id = "">
+                       <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
                           Delete
                        </button>
-                       <button class = "btn btn-secondary btn-editar" data-id ="">
+                       <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
                           Edit
                        </button>
                      </div>
@@ -49,7 +49,9 @@ auth.onAuthStateChanged(async function(user){
 
             $btnsEliminar.each(function(){
                 $(this).on('click',function(event){
-                    eliminarTarea($(this).data('id'));
+                    console.log("se elimino");
+                    eliminarTarea($(this).data('id')); 
+                    console.log("paso a eliminar tareas");
                 });
             });
 
@@ -61,7 +63,7 @@ auth.onAuthStateChanged(async function(user){
                     const tarea = doc.data();
                     const taskForm2 = $("#form-tareas");
                     taskForm2.find('#titulo-tarea').val(tarea.titulo);
-                    taskForm2.find('#descripcion-tarea').val(tarea.descripcion);
+                    taskForm2.find('#descripcion-tareas').val(tarea.descripcion);
                     estadoEditar = true;
                     id = doc.id;
                     taskForm2.find('#btn-task-form').text('Update');
@@ -85,6 +87,8 @@ formTareas.submit(function(e){
 
     var tituloF = formTareas.find("#titulo-tarea").val();
     var descripcionF = formTareas.find("#descripcion-tareas").val();
+console.log(tituloF)
+console.log(descripcionF)
 
     if(userGlobal){
         if(estadoEditar){
