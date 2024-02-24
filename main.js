@@ -22,6 +22,7 @@ auth.onAuthStateChanged(async function(user){
 
         actulizarObtenerTareas(querySnapshot => {
             let html = '';
+            let html2 = '';
 
             querySnapshot.forEach(function(doc){
                 const task = doc.data(); 
@@ -44,18 +45,51 @@ auth.onAuthStateChanged(async function(user){
                      <p>${"Publicado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</p>
                      <p>${task.descripcion}</p>
                      <div>
+                     <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
+                     <i class="bi bi-pencil-square"></i>
+                     Editar
+                    </button>
                        <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
-                          Delete
-                       </button>
-                       <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
-                          Edit
+                       <i class="bi bi-trash3"></i>
                        </button>
                      </div>
                     </li>
                     `;
                 }
             });
+
+            querySnapshot.forEach(function (doc) {
+                const tarea = doc.data();
+        
+                if (tarea.email != correo) {
+                  const fecha = tarea.fechaCreacion.toDate();
+                  const anio = fecha.getFullYear();
+                  const mes = fecha.getMonth() + 1; // Se suma 1 ya que los meses van de 0 a 11
+                  const dia = fecha.getDate();
+                  const hora = fecha.getHours();
+                  const minutos = fecha.getMinutes();
+                  const segundos = fecha.getSeconds();
+                  html2 += `
+                            <li class="list-group-item list-group-item-action mt-2">
+                              <h5>${tarea.titulo}</h5>
+                              <p><i>${"Creado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</i></p>
+                              <h6>${tarea.email}</h6>
+                              <p>${tarea.descripcion}</p>
+                              <div>
+                                <button class="btn btn-primary btn-eliminar" data-id="">
+                                <i class="bi bi-hand-thumbs-up"></i>
+                                </button>
+                                <button class="btn btn-secondary btn-editar" data-id="">
+                                  Comentar
+                                </button>
+                              </div>
+                            </li>
+                          `;
+                }
+              });
+
             contenedorTareas.html(html);
+            contenedorTareasTodas.html(html2);
 
             const $btnsEliminar = $('.btn-eliminar');
 
@@ -78,18 +112,21 @@ auth.onAuthStateChanged(async function(user){
                     taskForm2.find('#descripcion-tareas').val(tarea.descripcion);
                     estadoEditar = true;
                     id = doc.id;
-                    taskForm2.find('#btn-task-form').text('Update');
+                    taskForm2.find('#btn-task-form').text('Guardar cambios');
                 });
             });
         });
         const contenedorTareas = $("#contenedor-tareas");
+        const contenedorTareasTodas = $("#contenedor-tareas-todas");
+        
     }
     else{
         console.log("sin sesion")
 
         const contenedorTareas = $("#contenedor-tareas");
+        const contenedorTareasTodas = $("#contenedor-tareas-todas");
         contenedorTareas.html('<h3 class ="text-white">Inicia sesion para ver tus publicaciones :)</h3>');
-
+        contenedorTareasTodas.html('');
         verificarSesion(user);
     }
 });
