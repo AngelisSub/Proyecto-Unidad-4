@@ -24,12 +24,24 @@ auth.onAuthStateChanged(async function(user){
             let html = '';
 
             querySnapshot.forEach(function(doc){
-                const task = doc.data();
+                const task = doc.data(); 
 
                 if(task.email == correo){
+                    
+                const fecha = task.fechaCreacion.toDate();
+
+                const anio = fecha.getFullYear();
+                const mes = fecha.getMonth() + 1; // Se suma 1 ya que los meses van de 0 a 11
+                const dia = fecha.getDate();
+                const hora = fecha.getHours();
+                const minutos = fecha.getMinutes();
+                const segundos = fecha.getSeconds();
+
+                
                     html += `
                     <li class = "list-group-item list-group-item-action mt-2">
                      <h5>${task.titulo}</h5>
+                     <p>${"Publicado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</p>
                      <p>${task.descripcion}</p>
                      <div>
                        <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
@@ -87,6 +99,7 @@ formTareas.submit(function(e){
 
     var tituloF = formTareas.find("#titulo-tarea").val();
     var descripcionF = formTareas.find("#descripcion-tareas").val();
+    const fechaCreacion = new Date();
 console.log(tituloF)
 console.log(descripcionF)
 
@@ -102,7 +115,7 @@ console.log(descripcionF)
             formTareas.find('#btn-task-form').text('Guardar');
         }
         else{
-            guardarTarea(tituloF, descripcionF, userGlobal.email);
+            guardarTarea(tituloF, descripcionF, userGlobal.email, fechaCreacion);
         }
         formTareas.trigger('reset');
     }
