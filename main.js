@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { auth,actulizarObtenerTareas, eliminarTarea, actualizarTarea, obtenerTarea } from "./app/firebase.js";
+import { auth,actulizarObtenerTareas, eliminarTarea, actualizarTarea, obtenerTarea, obtenerPerfil } from "./app/firebase.js";
 
 import './app/crearCuenta.js'
 import './app/iniciarSesion.js'
@@ -71,15 +71,20 @@ auth.onAuthStateChanged(async function(user){
                   const segundos = fecha.getSeconds();
                   html2 += `
                             <li class="list-group-item list-group-item-action mt-2">
+                              <div class="d-flex justify-content-between">
+                                <label class="nombreUsuarios" data-id=""><b>${tarea.email}</b> publicó:</label>
+                                  <button class="btn-otroPerfil btn btn-primary bi bi-person-square" data-id="${tarea.email}" data-bs-toggle="modal" data-bs-target="#modalPerfil"> 
+                                    Ver perfil
+                                  </button>
+                              </div>
                               <h5>${tarea.titulo}</h5>
-                              <p><i>${"Creado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</i></p>
-                              <h6>${tarea.email}</h6>
                               <p>${tarea.descripcion}</p>
+                              <p><i>${"Publicado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</i></p>
                               <div>
-                                <button class="btn btn-primary btn-eliminar" data-id="">
+                                <button class="btn btn-primary btn-like" data-id="">
                                 <i class="bi bi-hand-thumbs-up"></i>
                                 </button>
-                                <button class="btn btn-secondary btn-editar" data-id="">
+                                <button class="btn btn-secondary btn-comentar" data-id="">
                                   Comentar
                                 </button>
                               </div>
@@ -113,6 +118,15 @@ auth.onAuthStateChanged(async function(user){
                     estadoEditar = true;
                     id = doc.id;
                     taskForm2.find('#btn-task-form').text('Guardar cambios');
+                });
+            });
+
+            const btnsOtroPerfil = $(".btn-otroPerfil");
+
+            btnsOtroPerfil.each(function(){
+                $(this).click(async function(){
+                    const perfil = await obtenerPerfil($(this).data("id"));
+                    llenarModalPerfil(perfil);
                 });
             });
         });
@@ -157,3 +171,16 @@ console.log(descripcionF)
         formTareas.trigger('reset');
     }
 });
+const botonMiPerfil = $('#botonMiPerfil');
+
+botonMiPerfil.click(async function(){
+  const perfil = await obtenerPerfil(userGlobal.email);
+  llenarModalPerfil(perfil);
+});
+
+function llenarModalPerfil(perfil){
+  $("#nombresPerfil").html(perfil.nombres);
+  $("#apellidosPerfil").html(perfil.apellidos);
+  $("#edadPerfil").html(perfil.edad);
+  $("#sexoPerfil").html(perfil.sexo);
+}

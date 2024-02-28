@@ -24,6 +24,9 @@
           <li class="nav-item">
             <a id="botonRegistrarse" class="nav-link sesionCerrada" href="#" data-bs-toggle="modal" data-bs-target="#modalCrearCuenta">Registrarse</a>
           </li>
+          <li class="nav-item">
+            <a id="botonMiPerfil" class="nav-link sesionIniciada" href="#" data-bs-toggle="modal" data-bs-target="#modalPerfil">Mi perfil</a>
+          </li>
 
           <li class="nav-item">
             <a id="botonCerrarSesion" class="nav-link sesionIniciada" href="#">Cerrar Sesion</a>
@@ -114,7 +117,28 @@
                 </div>
                 <div class="mb-3">
                   <label for="contraCrearCuenta" class="form-label">Contraseña</label>
-                  <input type="password" class="form-control" id="contraCrearCuenta">
+                  <input type="password" class="form-control" id="contraCrearCuenta" required>
+                </div>
+                <div class="mb-3">
+                  <label for="nombresCrearCuenta" class="form-label">Nombres</label>
+                  <input type="text" class="form-control" id="nombresCrearCuenta" required>
+                </div>
+                <div class="mb-3">
+                  <label for="apellidosCrearCuenta" class="form-label">Apellidos</label>
+                  <input type="text" class="form-control" id="apellidosCrearCuenta" required>
+                </div>
+                <div class="mb-3 row">
+                  <div class="col-md-4">
+                    <label for="edadCrearCuenta" class="form-label">Edad</label>
+                    <input type="number" class="form-control" id="edadCrearCuenta" required>
+                  </div>
+                  <div class="col-md-8">
+                    <label for="sexoCrearCuenta" class="form-label">Sexo</label>
+                    <select class="form-select" aria-label="Default select example" id="sexoCrearCuenta" required>
+                      <option value="Femenino">Femenino</option>
+                      <option value="Masculino">Masculino</option>  
+                    </select>
+                  </div>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Crear cuenta</button>
@@ -130,7 +154,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Iniciar Sesión</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -152,6 +176,30 @@
 
         </div>
         
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Mi Perfil</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+               <img  class="card-img-top" src="https://66.media.tumblr.com/bbfb0e5818885ed86b696e743a11a617/tumblr_nesi9jas3U1t0krnso1_640.jpg" alt="">
+            </div>
+            <div class="col-md-6">
+              <label for="">Nombres:</label><p id="nombresPerfil"></p>
+              <label for="">Apellidos:</label><p id="apellidosPerfil"></p>
+              <label for="">Edad:</label><p id="edadPerfil"></p>
+              <label for="">Sexo:</label><p id="sexoPerfil"></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

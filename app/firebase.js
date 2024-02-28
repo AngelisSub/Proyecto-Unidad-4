@@ -2,18 +2,18 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebas
 import {getAuth} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-import {getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, updateDoc, getDoc} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import {getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, updateDoc, getDoc, query, where} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyApmAsQ-TT2RWpElC_LHE8LKVEF6R9fj78",
-    authDomain: "unidad-4-d93b9.firebaseapp.com",
-    projectId: "unidad-4-d93b9",
-    storageBucket: "unidad-4-d93b9.appspot.com",
-    messagingSenderId: "86555075860",
-    appId: "1:86555075860:web:26b03d3dbbbc0d0bcbce01",
-    measurementId: "G-HFDWJ7XB66"
-  };
+  apiKey: "AIzaSyApmAsQ-TT2RWpElC_LHE8LKVEF6R9fj78",
+  authDomain: "unidad-4-d93b9.firebaseapp.com",
+  projectId: "unidad-4-d93b9",
+  storageBucket: "unidad-4-d93b9.appspot.com",
+  messagingSenderId: "86555075860",
+  appId: "1:86555075860:web:26b03d3dbbbc0d0bcbce01",
+  measurementId: "G-HFDWJ7XB66"
+};
 
 
   export const app = initializeApp(firebaseConfig);
@@ -47,4 +47,14 @@ const firebaseConfig = {
 
   export function actualizarTarea(id, nuevosCampos){
     return updateDoc(doc(db, "tareas", id),nuevosCampos);
+  }
+
+  export function guardarPerfil(nombres, apellidos, edad, sexo, email){
+    addDoc(collection(db, "perfiles"), { nombres, apellidos, edad, sexo, email });
+  }
+
+  export async function obtenerPerfil(email){
+    const cadenaDeBusqueda = query( collection(db, "perfiles"), where("email", "==", email));
+    const documentosEncontrados = await getDocs(cadenaDeBusqueda);
+    return documentosEncontrados.docs[0].data();
   }
