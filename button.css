@@ -1,0 +1,68 @@
+button {
+    position: relative;
+    padding: 15px 35px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #2F5C2F;
+    background-color: transparent;
+    border: 3px solid #2F5C2F;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.5s;
+    top: 450px;
+  }
+  
+  button::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 10px;
+    left: 10px;
+    background-color: #D5A084;
+    border-radius: 8px;
+    z-index: -1;
+    transition: all 0.5s;
+  }
+  
+  button:hover::after {
+    top: 0;
+    left: 0;
+  }
+  
+  .icon-1 {
+    position: absolute;
+    width: 15%;
+    top: 10px;
+    right: 15px;
+    color: #2F5C2F;
+    transform-origin: 100% 100%;
+    transform: rotate(-25deg) translateX(120%) translateY(20%);
+    z-index: -1;
+    transition: all 0.5s;
+  }
+  
+  button:hover .icon-1 {
+    width: 25%;
+    transform: rotate(10deg) translateX(110%) translateY(-40%);
+  }
+  
+  .icon-2 {
+    position: absolute;
+    width: 15%;
+    top: 20px;
+    left: 10px;
+    color: #2F5C2F;
+    transform-origin: 100% 100%;
+    z-index: -1;
+    transition: all 0.5s;
+  }
+  
+  button:hover .icon-2 {
+    width: 50%;
+    top: -40px;
+    left: -80px;
+    transform: rotate(90deg);
+    z-index: 1;
+  }
+  
