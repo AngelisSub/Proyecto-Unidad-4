@@ -1,82 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/styles2.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/styles2.css">
 </head>
-<body>
+
+<body style="overflow-y: scroll;">
   <div id="stars"></div>
   <div id="stars2"></div>
   <div id="stars3"></div>
 
+<!-- DAILYN HIZO UNA MODIFICACIÓN-->
+
+
   <nav class="navbar navbar-expand-lg colorPerfil">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Mi pagina</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="https://gipmendoza.com.ar/wp-content/uploads/psicoeducacion45.png" alt="Bootstrap" width="100"
+        height="54">
+      <a class="navbar-brand" href="#">Goals</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
           <li class="nav-item">
-            <a id="botonIniciarSesion" class="nav-link sesionCerrada" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalIniciarSesion">Iniciar Sesion</a>
+            <a id="botonIniciarSesion" class="nav-link sesionCerrada bi bi-arrow-left-square  " aria-current="page" href="#"
+              data-bs-toggle="modal" data-bs-target="#modalIniciarSesion"> Iniciar Sesion</a>
           </li>
           <li class="nav-item">
-            <a id="botonRegistrarse" class="nav-link sesionCerrada" href="#" data-bs-toggle="modal" data-bs-target="#modalCrearCuenta">Registrarse</a>
+            <a id="botonRegistrarse" class="nav-link sesionCerrada bi bi-person-check" href="#" data-bs-toggle="modal"
+              data-bs-target="#modalCrearCuenta"> Registrarse</a>
           </li>
           <li class="nav-item">
-            <a id="botonMiPerfil" class="nav-link sesionIniciada" href="#" data-bs-toggle="modal" data-bs-target="#modalPerfil">Mi perfil</a>
+            <a id="botonMiPerfil" class="nav-link sesionIniciada bi bi-person-circle  " href="#" data-bs-toggle="modal"
+              data-bs-target="#modalPerfil"> Mi perfil</a>
           </li>
 
           <li class="nav-item">
-            <a id="botonCerrarSesion" class="nav-link sesionIniciada" href="#">Cerrar Sesion</a>
+            <a id="botonCerrarSesion" class="nav-link sesionIniciada bi bi-arrow-right-square" href="#"> Cerrar Sesion</a>
           </li>
-          
+
         </ul>
-        
+
       </div>
     </div>
   </nav>
 
-<!-- CRUD -->
-<!-- ADD TASK -->
-<div class="container p-4">
-<div class="row">
-<div class="col-md-6 offset-md-3">
-  <div class="card">
-    <div class="card-body">
-      <h1 class="h4">Agregar tarea o nota</h1>
-      <form id="form-tareas">
-        <label for="title">Titulo:</label>
-        <input
-          type="text"
-          id="titulo-tarea"
-          class="form-control mb-3"
-          class="My First Title"
-          placeholder="Titulo de tarea"
-          autofocus>
-        <label for="description">Descripcion:</label>
-        <textarea
-          id="descripcion-tareas"
-          rows="3"
-          class="form-control mb-3"
-          placeholder="Escribir tarea o nota aqui"
-        ></textarea>
+  <br>:
+  <!--
+   
+ -->
 
-        <button type="submit" class="btn btn-primary" id="btn-task-form">Guardar</button>
-      </form>
+
+
+  <!-- CRUD -->
+  <!-- ADD TASK -->
+  <div class="container p-4">
+    <div class="row">
+      <div class="col-md-6 col-md-pull-6">
+        <div class="card">
+          <div class="card-body colorPerfil">
+            <h1 class="h4">Agregar Meta</h1>
+            <form id="form-tareas">
+              <label for="title">Titulo:</label>
+              <input type="text" id="titulo-tarea" class="form-control mb-3" class="My First Title"
+                placeholder="Titulo de tarea" autofocus>
+              <label for="description">Descripcion:</label>
+              <textarea id="descripcion-tareas" rows="3" class="form-control mb-3"
+                placeholder="Escribir tarea o nota aqui"></textarea>
+
+              <button type="submit" class="btn btn-primary bg-celeste text-dark" id="btn-task-form">Guardar</button>
+            </form>
+          </div>
+        </div>
+        <div class="container p-4 container ">
+          <div class="row">
+            <div class="col-md-12 ">
+              <h2 class="text-white">Mis Propositos</h2>
+              <ul class="list-group" id="contenedor-tareas">
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-md-push-6 ">
+        <div class="card">
+          <div class="card-body bg-celeste">
+            <!--<h2 class="text-white"> Otros usuarios</h2> -->
+            <ul class="list-group" id="contenedor-tareas-todas">
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 
+  <div class="container">
+    <div class="card mb-6" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3MRokDQmF8RWUh2KjTms44X_0Q1wy0VwZLOP6R2_SXQl-L9D7nlFMRbvvO-pNzlA5YJI&usqp=CAU" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+          </div>
+          <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
+            <i class="bi bi-pencil-square"></i>
+            Editar
+           </button>
+              <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
+              <i class="bi bi-trash3"></i>
+              </button>
+        </div>
+      </div>
     </div>
+
+    <div class="card mb-6" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="..." class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+          </div>
+          <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
+            <i class="bi bi-pencil-square"></i>
+            Editar
+           </button>
+              <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
+              <i class="bi bi-trash3"></i>
+              </button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card mb-6" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="..." class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+          </div>
+          <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
+            <i class="bi bi-pencil-square"></i>
+            Editar
+           </button>
+              <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
+              <i class="bi bi-trash3"></i>
+              </button>
+        </div>
+      </div>
+    </div>
+   </div> 
+-->
+    </div>
+    <!-- Tasks List -->
+    <!--<div class="col-md-6" id="tasks-container"></div> -->
   </div>
-</div>
-<!-- Tasks List -->
-<!--<div class="col-md-6" id="tasks-container"></div> -->
-</div>
-</div>
+  </div>
 
   <!--<div class="container p-4">
     <div class="row">
@@ -87,20 +191,7 @@
     </div>
   </div>-->
 
-  <div class="container p-4 publicaciones">
-    <div class="row">
-      <div class="col-md-6 ">
-        <h2 class="text-white">Mis publicaciones</h2>
-        <ul class="list-group" id="contenedor-tareas">
-        </ul>
-      </div>
-      <div class="col-md-6 ">
-        <h2 class="text-white">Otros usuarios</h2>
-        <ul class="list-group" id="contenedor-tareas-todas">
-        </ul>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Button trigger modal -->
 
@@ -113,44 +204,44 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          
-            <form id="formCrearCuenta">
-                <div class="mb-3">
-                  <label for="correoCrearCuenta" class="form-label">Correo</label>
-                  <input type="email" class="form-control" id="correoCrearCuenta" aria-describedby="emailHelp">
-                  
-                </div>
-                <div class="mb-3">
-                  <label for="contraCrearCuenta" class="form-label">Contraseña</label>
-                  <input type="password" class="form-control" id="contraCrearCuenta" required>
-                </div>
-                <div class="mb-3">
-                  <label for="nombresCrearCuenta" class="form-label">Nombres</label>
-                  <input type="text" class="form-control" id="nombresCrearCuenta" required>
-                </div>
-                <div class="mb-3">
-                  <label for="apellidosCrearCuenta" class="form-label">Apellidos</label>
-                  <input type="text" class="form-control" id="apellidosCrearCuenta" required>
-                </div>
-                <div class="mb-3 row">
-                  <div class="col-md-4">
-                    <label for="edadCrearCuenta" class="form-label">Edad</label>
-                    <input type="number" class="form-control" id="edadCrearCuenta" required>
-                  </div>
-                  <div class="col-md-8">
-                    <label for="sexoCrearCuenta" class="form-label">Sexo</label>
-                    <select class="form-select" aria-label="Default select example" id="sexoCrearCuenta" required>
-                      <option value="Femenino">Femenino</option>
-                      <option value="Masculino">Masculino</option>  
-                    </select>
-                  </div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Crear cuenta</button>
-              </form>
+
+          <form id="formCrearCuenta">
+            <div class="mb-3">
+              <label for="correoCrearCuenta" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="correoCrearCuenta" aria-describedby="emailHelp">
+
+            </div>
+            <div class="mb-3">
+              <label for="contraCrearCuenta" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="contraCrearCuenta" required>
+            </div>
+            <div class="mb-3">
+              <label for="nombresCrearCuenta" class="form-label">Nombres</label>
+              <input type="text" class="form-control" id="nombresCrearCuenta" required>
+            </div>
+            <div class="mb-3">
+              <label for="apellidosCrearCuenta" class="form-label">Apellidos</label>
+              <input type="text" class="form-control" id="apellidosCrearCuenta" required>
+            </div>
+            <div class="mb-3 row">
+              <div class="col-md-4">
+                <label for="edadCrearCuenta" class="form-label">Edad</label>
+                <input type="number" class="form-control" id="edadCrearCuenta" required>
+              </div>
+              <div class="col-md-8">
+                <label for="sexoCrearCuenta" class="form-label">Sexo</label>
+                <select class="form-select" aria-label="Default select example" id="sexoCrearCuenta" required>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Masculino">Masculino</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Crear cuenta</button>
+          </form>
 
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -163,24 +254,24 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          
-            <form id="formIniciarSesion">
-                <div class="mb-3">
-                  <label for="correoIniciarSesion" class="form-label">Correo</label>
-                  <input type="email" class="form-control" id="correoIniciarSesion" aria-describedby="emailHelp">
-                  
-                </div>
-                <div class="mb-3">
-                  <label for="contraIniciarSesion" class="form-label">Contraseña</label>
-                  <input type="password" class="form-control" id="contraIniciarSesion">
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
-              </form>
+
+          <form id="formIniciarSesion">
+            <div class="mb-3">
+              <label for="correoIniciarSesion" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="correoIniciarSesion" aria-describedby="emailHelp">
+
+            </div>
+            <div class="mb-3">
+              <label for="contraIniciarSesion" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="contraIniciarSesion">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+          </form>
 
 
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -195,13 +286,19 @@
         <div class="modal-body  bg-celeste">
           <div class="row">
             <div class="col-md-6">
-               <img  class="card-img-top" src="https://66.media.tumblr.com/bbfb0e5818885ed86b696e743a11a617/tumblr_nesi9jas3U1t0krnso1_640.jpg" alt="">
+              <img class="card-img-top"
+                src="https://66.media.tumblr.com/bbfb0e5818885ed86b696e743a11a617/tumblr_nesi9jas3U1t0krnso1_640.jpg"
+                alt="">
             </div>
             <div class="col-md-6">
-              <label for="">Nombres:</label><p id="nombresPerfil"></p>
-              <label for="">Apellidos:</label><p id="apellidosPerfil"></p>
-              <label for="">Edad:</label><p id="edadPerfil"></p>
-              <label for="">Sexo:</label><p id="sexoPerfil"></p>
+              <label for="">Nombres:</label>
+              <p id="nombresPerfil"></p>
+              <label for="">Apellidos:</label>
+              <p id="apellidosPerfil"></p>
+              <label for="">Edad:</label>
+              <p id="edadPerfil"></p>
+              <label for="">Sexo:</label>
+              <p id="sexoPerfil"></p>
             </div>
           </div>
         </div>
@@ -214,14 +311,17 @@
 
 
 
-
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
   <script src="main.js" type="module"></script>
-  
 
-  
+
+
 
 </body>
+
 </html>

@@ -5,3 +5,9 @@
 .bg-celeste{
     background-color: rgb(173, 211, 236);
 }
+
+
+body {
+    overflow-y: scroll;
+  }
+  

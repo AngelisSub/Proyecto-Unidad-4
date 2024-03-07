@@ -44,12 +44,13 @@ auth.onAuthStateChanged(async function(user){
                      <h5>${task.titulo}</h5>
                      <p>${"Publicado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</p>
                      <p>${task.descripcion}</p>
+                     <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9p_AU3Fpv6dWk2IhzohC7Xyab9vUet69AmA&usqp=CAU"></img>
                      <div>
-                     <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
+                     <button class = "btn btn-secondary btn-editar colorPerfil text-dark" data-id ="${doc.id}">
                      <i class="bi bi-pencil-square"></i>
                      Editar
                     </button>
-                       <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
+                       <button class = "btn btn-primary btn-eliminar bg-celeste text-dark" data-id = "${doc.id}">
                        <i class="bi bi-trash3"></i>
                        </button>
                      </div>
@@ -73,18 +74,19 @@ auth.onAuthStateChanged(async function(user){
                             <li class="list-group-item list-group-item-action mt-2">
                               <div class="d-flex justify-content-between">
                                 <label class="nombreUsuarios" data-id=""><b>${tarea.email}</b> publicó:</label>
-                                  <button class="btn-otroPerfil btn btn-primary bi bi-person-square" data-id="${tarea.email}" data-bs-toggle="modal" data-bs-target="#modalPerfil"> 
+                                  <button class="btn-otroPerfil btn btn-primary bi bi-person-square colorPerfil text-dark" data-id="${tarea.email}" data-bs-toggle="modal" data-bs-target="#modalPerfil"> 
                                     Ver perfil
                                   </button>
                               </div>
                               <h5>${tarea.titulo}</h5>
                               <p>${tarea.descripcion}</p>
                               <p><i>${"Publicado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</i></p>
+                              <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9p_AU3Fpv6dWk2IhzohC7Xyab9vUet69AmA&usqp=CAU"></img>
                               <div>
-                                <button class="btn btn-primary btn-like" data-id="">
+                                <button class="btn btn-primary btn-like colorPerfil text-dark" data-id="">
                                 <i class="bi bi-hand-thumbs-up"></i>
                                 </button>
-                                <button class="btn btn-secondary btn-comentar" data-id="">
+                                <button class="btn btn-secondary btn-comentar bg-celeste text-dark" data-id="">
                                   Comentar
                                 </button>
                               </div>
