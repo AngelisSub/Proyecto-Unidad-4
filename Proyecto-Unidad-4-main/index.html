@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
-  <title>Document</title>
+  <title>ADDSJ life</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/styles2.css">
@@ -106,90 +106,7 @@
       </div>
 
 
-      <!-- 
-  <div class="container">
-    <div class="card mb-6" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3MRokDQmF8RWUh2KjTms44X_0Q1wy0VwZLOP6R2_SXQl-L9D7nlFMRbvvO-pNzlA5YJI&usqp=CAU" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-          </div>
-          <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
-            <i class="bi bi-pencil-square"></i>
-            Editar
-           </button>
-              <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
-              <i class="bi bi-trash3"></i>
-              </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card mb-6" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="..." class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-          </div>
-          <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
-            <i class="bi bi-pencil-square"></i>
-            Editar
-           </button>
-              <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
-              <i class="bi bi-trash3"></i>
-              </button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card mb-6" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="..." class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-          </div>
-          <button class = "btn btn-secondary btn-editar" data-id ="${doc.id}">
-            <i class="bi bi-pencil-square"></i>
-            Editar
-           </button>
-              <button class = "btn btn-primary btn-eliminar" data-id = "${doc.id}">
-              <i class="bi bi-trash3"></i>
-              </button>
-        </div>
-      </div>
-    </div>
-   </div> 
--->
-    </div>
-    <!-- Tasks List -->
-    <!--<div class="col-md-6" id="tasks-container"></div> -->
-  </div>
-  </div>
-
-  <!--<div class="container p-4">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <ul class="list-group" id="contenedor-tareas">
-        </ul>
-      </div>
-    </div>
-  </div>-->
+      
 
 
 
@@ -305,6 +222,38 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="modalComentario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Comentarios</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="row">
+              
+            
+            <div class="card-body col-md-6">
+              <ul class="list-group" id="lista-comentarios"></ul>
+
+              <div>
+                <form id="formComentario">
+                  <div class="mb-3">
+                    <label for="comentario" class="form-label">Haz un comentario</label>
+                    <textarea type="text" class="form-control" id="texto-comentario" aria-describedby="emailHelp"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-comentar">Comentar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
 
 
 

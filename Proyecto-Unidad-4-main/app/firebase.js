@@ -24,8 +24,8 @@ const firebaseConfig = {
   
   export const db = getFirestore();
 
-  export function guardarTarea(titulo, descripcion, email, fechaCreacion){
-    addDoc(collection(db, "tareas"),{ titulo, descripcion, email, fechaCreacion});
+  export function guardarTarea(titulo, descripcion, email, fechaCreacion, cantComentarios, cantLikes, personasLiked){
+    addDoc(collection(db, "tareas"),{ titulo, descripcion, email, fechaCreacion, cantComentarios, cantLikes, personasLiked});
   }
 
   export function obtenerTareas(){
@@ -49,6 +49,7 @@ const firebaseConfig = {
     return updateDoc(doc(db, "tareas", id),nuevosCampos);
   }
 
+  //perfiles
   export function guardarPerfil(nombres, apellidos, edad, sexo, email){
     addDoc(collection(db, "perfiles"), { nombres, apellidos, edad, sexo, email });
   }
@@ -58,3 +59,17 @@ const firebaseConfig = {
     const documentosEncontrados = await getDocs(cadenaDeBusqueda);
     return documentosEncontrados.docs[0].data();
   }
+
+  //comentarios
+  export function guardarComentario(texto, fechaCreacion,idTarea,email){
+    addDoc(collection(db, "comentarios"),{texto, fechaCreacion, idTarea, email});
+  }
+
+  export async function obtenerComentarios(idTarea){
+    const cadenaDeBusqueda = query(collection(db, "comentarios"), where("idTarea", "==", idTarea));
+    const documentosEncontrados = await getDocs(cadenaDeBusqueda);
+    
+    return documentosEncontrados.docs.map(doc => doc.data());
+    console.log("hff")
+  }
+  

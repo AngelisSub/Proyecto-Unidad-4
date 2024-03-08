@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { auth,actulizarObtenerTareas, eliminarTarea, actualizarTarea, obtenerTarea, obtenerPerfil } from "./app/firebase.js";
+import { auth,actulizarObtenerTareas, eliminarTarea, actualizarTarea, obtenerTarea, obtenerPerfil, guardarComentario, obtenerComentarios } from "./app/firebase.js";
 
 import './app/crearCuenta.js'
 import './app/iniciarSesion.js'
@@ -14,6 +14,8 @@ const formTareas = $("#form-tareas");
 let userGlobal;
 let estadoEditar = false;
 let id = '';
+let cantComentGlobal = 0;
+
 auth.onAuthStateChanged(async function(user){
     if(user){
         userGlobal = user;
@@ -38,12 +40,20 @@ auth.onAuthStateChanged(async function(user){
                 const minutos = fecha.getMinutes();
                 const segundos = fecha.getSeconds();
 
+                let textoLike = "";
+                if (task.personasLiked.includes(correo)){
+                  textoLike +=`<i class="bi bi-hand-thumbs-up-fill"></i>` ;
+                }else{
+                  textoLike +=`<i class="bi bi-hand-thumbs-up"></i>`;
+                }
+
                 
                     html += `
                     <li class = "list-group-item list-group-item-action mt-2">
                      <h5>${task.titulo}</h5>
-                     <p>${"Publicado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</p>
                      <p>${task.descripcion}</p>
+                     <p class="text-end">${"Publicado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</p>
+                     
                      <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9p_AU3Fpv6dWk2IhzohC7Xyab9vUet69AmA&usqp=CAU"></img>
                      <div>
                      <button class = "btn btn-secondary btn-editar colorPerfil text-dark" data-id ="${doc.id}">
@@ -53,6 +63,14 @@ auth.onAuthStateChanged(async function(user){
                        <button class = "btn btn-primary btn-eliminar bg-celeste text-dark" data-id = "${doc.id}">
                        <i class="bi bi-trash3"></i>
                        </button>
+                       <button class = "btn btn-primary btn-like" data-id = "${doc.id}">
+                       ${textoLike}
+                       </button>
+                       <button class="btn btn-secondary btn-verComentarios" data-id="${doc.id} " data-bs-toggle="modal" data-bs-target="#modalComentario">
+                       Comentar
+                       </button>
+                       <label>${task.cantLikes}me gusta(s),</label>
+                       <label>${task.cantComentarios}comentario(s),</label>
                      </div>
                     </li>
                     `;
@@ -70,6 +88,14 @@ auth.onAuthStateChanged(async function(user){
                   const hora = fecha.getHours();
                   const minutos = fecha.getMinutes();
                   const segundos = fecha.getSeconds();
+
+                  let textoLike ="";
+                  if(tarea.personasLiked.includes(correo)){
+                    textoLike += `<i class="bi bi-hand-thumbs-up-fill"></i>`; 
+                  }else{
+                    textoLike += `<i class="bi bi-hand-thumbs-up"></i>`;
+                  }
+
                   html2 += `
                             <li class="list-group-item list-group-item-action mt-2">
                               <div class="d-flex justify-content-between">
@@ -78,17 +104,20 @@ auth.onAuthStateChanged(async function(user){
                                     Ver perfil
                                   </button>
                               </div>
+                              <div class = "border mt-2"></div>
                               <h5>${tarea.titulo}</h5>
                               <p>${tarea.descripcion}</p>
                               <p><i>${"Publicado el día "+dia+"/"+mes+"/"+anio+" a las "+hora+":"+minutos+":"+segundos}</i></p>
                               <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9p_AU3Fpv6dWk2IhzohC7Xyab9vUet69AmA&usqp=CAU"></img>
                               <div>
-                                <button class="btn btn-primary btn-like colorPerfil text-dark" data-id="">
-                                <i class="bi bi-hand-thumbs-up"></i>
+                                <button class="btn btn-primary btn-like colorPerfil text-dark" data-id="${doc.id}">
+                                ${textoLike}
                                 </button>
-                                <button class="btn btn-secondary btn-comentar bg-celeste text-dark" data-id="">
+                                <button class="btn btn-secondary btn-verComentarios bg-celeste text-dark" data-id="${doc.id}" data-bs-toggle="modal" data-bs-target="#modalComentario">
                                   Comentar
                                 </button>
+                                <label>${tarea.cantLikes}me gusta(s)</label>
+                                <label>${tarea.cantComentarios}comentario(s),</label>
                               </div>
                             </li>
                           `;
@@ -98,6 +127,8 @@ auth.onAuthStateChanged(async function(user){
             contenedorTareas.html(html);
             contenedorTareasTodas.html(html2);
 
+            //
+            
             const $btnsEliminar = $('.btn-eliminar');
 
             $btnsEliminar.each(function(){
@@ -108,7 +139,8 @@ auth.onAuthStateChanged(async function(user){
                 });
             });
 
-
+            //
+            
             const btnsEditar = $(".btn-editar");
             btnsEditar.each(function(){
                 $(this).on('click', async function(event){
@@ -123,13 +155,93 @@ auth.onAuthStateChanged(async function(user){
                 });
             });
 
+            //
+
             const btnsOtroPerfil = $(".btn-otroPerfil");
 
             btnsOtroPerfil.each(function(){
                 $(this).click(async function(){
-                    const perfil = await obtenerPerfil($(this).data("id"));
+                    const perfil = await obtenerPerfil($(this).data('id'));
                     llenarModalPerfil(perfil);
                 });
+            });
+
+            //
+            const btnsLike = $(".btn-like");
+            btnsLike.each(function (){
+              $(this).click(async function(){
+                const idTarea = $(this).data('id');
+                const doc = await obtenerTarea(idTarea);
+                const tarea = doc.data();
+
+                if(tarea.personasLiked.includes(correo)){
+                  let personas = tarea.personasLiked;
+                  personas.pop(correo);
+
+                  let likes = tarea.cantLikes;
+                  likes--;
+
+                  actualizarTarea(idTarea,{
+                    personasLiked: personas,
+                    cantLikes: likes
+                  });
+                }else{
+                  let personas = tarea.personasLiked;
+                  personas.push(correo);
+
+                  let likes = tarea.cantLikes;
+                  likes++;
+
+                  actualizarTarea(idTarea, {
+                    personasLiked: personas,
+                    cantLikes: likes
+                  });
+                }
+              });
+            });
+
+            //
+
+            const btnsVerComentarios = $(".btn-verComentarios");
+
+            btnsVerComentarios.each(function(){
+              
+              $(this).click(async function(){
+                
+                const idTarea = $(this).data('id');
+                formComentario.attr("id", idTarea);
+               
+                const listaComentarios = $("#lista-Comentarios");
+
+                listaComentarios.html('');
+
+                const comentarios = await obtenerComentarios(idTarea);
+                cantComentGlobal = comentarios.length;
+                console.log("hff")
+                if(comentarios){
+                  comentarios.sort(function(a,b){
+                    return a.fechaCreacion - b.fechaCreacion;
+                  })
+                  console.log(comentarios)
+                  comentarios.forEach(function(comentario){
+                    
+                    const fecha = comentario.fechaCreacion.toDate();
+                    const anio = fecha.getFullYear();
+                    const mes = fecha.getMonth() +1;
+                    const dia = fecha.getDate();
+                    const hora = fecha.getHours();
+                    const minutos = fecha.getMinutes();
+                    const segundos = fecha.getSeconds();
+                    
+                    listaComentarios.append(`
+                    <p><b>${comentario.email}</b></p>
+                    <h5>${comentario.texto}</h5>
+                    <p>${"Publicado el día " + dia + "/" + mes + "/" + anio + " a las " + hora + ":" + minutos + ":" + segundos}</p>
+                    <div class="border mt-2"></div>`);
+                    
+                  })
+                }
+              });
             });
         });
         const contenedorTareas = $("#contenedor-tareas");
@@ -152,7 +264,10 @@ formTareas.submit(function(e){
 
     var tituloF = formTareas.find("#titulo-tarea").val();
     var descripcionF = formTareas.find("#descripcion-tareas").val();
-    const fechaCreacion = new Date();
+    const fechaCreacionF = new Date();
+    var cantComentarios = 0;
+    var cantLikes = 0;
+    var personasLiked = [];
 console.log(tituloF)
 console.log(descripcionF)
 
@@ -168,7 +283,7 @@ console.log(descripcionF)
             formTareas.find('#btn-task-form').text('Guardar');
         }
         else{
-            guardarTarea(tituloF, descripcionF, userGlobal.email, fechaCreacion);
+            guardarTarea(tituloF, descripcionF, userGlobal.email, fechaCreacionF, cantComentarios, cantLikes, personasLiked);
         }
         formTareas.trigger('reset');
     }
@@ -186,3 +301,36 @@ function llenarModalPerfil(perfil){
   $("#edadPerfil").html(perfil.edad);
   $("#sexoPerfil").html(perfil.sexo);
 }
+
+
+//
+const formComentario = $("#formComentario");
+
+formComentario.submit(async function(e){
+  e.preventDefault();
+  var textoComentario = $(this).find("#texto-comentario").val();
+  var fechaCreacionF = new Date();
+  var idTarea = $(this).attr("id");
+  console.log("hff")
+  if(userGlobal){
+    guardarComentario(textoComentario, fechaCreacionF, idTarea, userGlobal.email);
+    const anio = fechaCreacionF.getFullYear();
+     const mes = fechaCreacionF.getMonth() +1;
+     const dia = fechaCreacionF.getDate();
+     const hora = fechaCreacionF.getHours();
+     const minutos = fechaCreacionF.getMinutes();
+     const segundos = fechaCreacionF.getSeconds();
+     
+     $("#lista-Comentarios").append(`
+     <p><b>${userGlobal.email}</b></p>
+     <h5>${textoComentario}</h5>
+     <p>${"Publicado el día " + dia + "/" + mes + "/" + anio + " a las " + hora + ":" + minutos + ":" + segundos}</p>
+     <div class="border mt-2"></div>`);
+  }
+  cantComentGlobal = cantComentGlobal + 1;
+  actualizarTarea(idTarea, {
+    cantComentarios: cantComentGlobal
+  });
+  $(this).trigger('reset');
+  
+});
