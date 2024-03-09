@@ -2,7 +2,8 @@ const botonesSesionCerrada = $(".sesionCerrada");
 const botonesSesionIniciada = $(".sesionIniciada");
 const inputsSesionIniciada =$(".card");
 const publicaciones = $(".publicaciones");
-const hola = $(".hola");
+
+
 
 
 export function verificarSesion(user){
@@ -11,7 +12,8 @@ export function verificarSesion(user){
         botonesSesionCerrada.css("display", "none");
         inputsSesionIniciada.css("display","block");
         publicaciones.css("display","block");
-        hola.css("display","block");
+        
+       
         
     }
     else{
@@ -19,6 +21,7 @@ export function verificarSesion(user){
         botonesSesionCerrada.css("display", "block");
         inputsSesionIniciada.css("display","none");
         publicaciones.css("display","none");
-        hola.css("display","none");
+        
+        
     }
 }
