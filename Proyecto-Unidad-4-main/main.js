@@ -116,7 +116,7 @@ auth.onAuthStateChanged(async function(user){
                                 <button class="btn btn-secondary btn-verComentarios bg-celeste text-dark" data-id="${doc.id}" data-bs-toggle="modal" data-bs-target="#modalComentario">
                                   Comentar
                                 </button>
-                                <label>${tarea.cantLikes}me gusta(s)</label>
+                                <label>${tarea.cantLikes} like(s)</label>
                                 <label>${tarea.cantComentarios}comentario(s),</label>
                               </div>
                             </li>
@@ -253,7 +253,7 @@ auth.onAuthStateChanged(async function(user){
 
         const contenedorTareas = $("#contenedor-tareas");
         const contenedorTareasTodas = $("#contenedor-tareas-todas");
-        contenedorTareas.html('<h3 class ="text-white">Inicia sesion para ver tus publicaciones :)</h3>');
+        contenedorTareas.html('<h3 class ="text-white"></h3>');
         contenedorTareasTodas.html('');
         verificarSesion(user);
     }
