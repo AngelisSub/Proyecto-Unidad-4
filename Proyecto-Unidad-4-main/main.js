@@ -42,9 +42,9 @@ auth.onAuthStateChanged(async function(user){
 
                 let textoLike = "";
                 if (task.personasLiked.includes(correo)){
-                  textoLike +=`<i class="bi bi-hand-thumbs-up-fill"></i>` ;
+                  textoLike +=`<i class="bi bi-heart-fill"></i>` ;
                 }else{
-                  textoLike +=`<i class="bi bi-hand-thumbs-up"></i>`;
+                  textoLike +=`<i class="bi bi-heart"></i>`;
                 }
 
                 
@@ -69,7 +69,7 @@ auth.onAuthStateChanged(async function(user){
                        <button class="btn btn-secondary btn-verComentarios" data-id="${doc.id} " data-bs-toggle="modal" data-bs-target="#modalComentario">
                        Comentar
                        </button>
-                       <label>${task.cantLikes}me gusta(s),</label>
+                       <label>${task.cantLikes} me gusta(s),</label>
                        <label>${task.cantComentarios}comentario(s),</label>
                      </div>
                     </li>
