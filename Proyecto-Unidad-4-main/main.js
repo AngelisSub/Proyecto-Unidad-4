@@ -69,7 +69,11 @@ auth.onAuthStateChanged(async function(user){
                        <button class="btn btn-secondary btn-verComentarios" data-id="${doc.id} " data-bs-toggle="modal" data-bs-target="#modalComentario">
                        Comentar
                        </button>
+<<<<<<< HEAD
                        <label>${task.cantLikes} me gusta(s),</label>
+=======
+                       <label>${task.cantLikes}  me gusta(s),</label>
+>>>>>>> a3baddbe4aec9b783d15e13037a0be17c9c313ea
                        <label>${task.cantComentarios}comentario(s),</label>
                      </div>
                     </li>
